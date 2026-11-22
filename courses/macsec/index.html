@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MACsec & MKA Course</title>
+  <!-- Fonts are optional: without internet the course falls back to system fonts. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>
+    // Apply the saved theme before first paint to avoid a flash.
+    try { var t = (JSON.parse(localStorage.getItem('mka-course-v1')) || {}).theme; if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <button id="menuBtn" class="icon-btn" aria-label="Toggle lesson menu">☰</button>
+    <div class="brand"><span class="logo">🔐</span>MACsec &amp; MKA <span class="muted">· automotive &amp; Linux</span></div>
+    <div class="progress-wrap" title="Course progress">
+      <div class="progress"><div id="progressBar"></div></div>
+      <span id="progressText">0%</span>
+    </div>
+    <div class="theme-switch" role="group" aria-label="Colour theme">
+      <button type="button" data-theme-set="light" aria-pressed="false">☀ Light</button>
+      <button type="button" data-theme-set="dark" aria-pressed="false">☾ Dark</button>
+      <button type="button" data-theme-set="auto" aria-pressed="false">Auto</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav id="sidebar" class="sidebar" aria-label="Lessons"></nav>
+    <main id="content" class="content" tabindex="-1"></main>
+  </div>
+
+  <!-- Core -->
+  <script src="assets/js/crypto.js"></script>
+  <script src="assets/js/engine.js"></script>
+  <!-- Lessons (order here = order in the course) -->
+  <script src="assets/js/lessons/01-intro.js"></script>
+  <script src="assets/js/lessons/02-building-blocks.js"></script>
+  <script src="assets/js/lessons/03-frame-format.js"></script>
+  <script src="assets/js/lessons/04-aes-gcm.js"></script>
+  <script src="assets/js/lessons/05-key-hierarchy.js"></script>
+  <script src="assets/js/lessons/06-mka-protocol.js"></script>
+  <script src="assets/js/lessons/07-lifecycle.js"></script>
+  <script src="assets/js/lessons/08-automotive.js"></script>
+  <script src="assets/js/lessons/09-t1s.js"></script>
+  <script src="assets/js/lessons/10-linux.js"></script>
+  <script src="assets/js/lessons/11-quiz.js"></script>
+  <script src="assets/js/lessons/12-glossary.js"></script>
+  <script>Course.start();</script>
+</body>
+</html>

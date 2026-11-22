@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{TITLE}} · Automotive Ethernet, frame by frame</title>
+  <meta name="description" content="{{SUBTITLE}}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="hub.css">
+  <script>try { var t = localStorage.getItem('linkup-theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}</script>
+</head>
+<body>
+  <div class="bg" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="./"><span class="logo"><span class="led"></span>↑</span>{{TITLE}}</a>
+    <nav class="nav"><a href="#courses">Courses</a><a href="#inside">What's inside</a></nav>
+    <div class="theme-switch" role="group" aria-label="Colour theme">
+      <button type="button" data-t="light" title="Light">☀</button><button type="button" data-t="dark" title="Dark">☾</button><button type="button" data-t="auto" title="Follow system">Auto</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-text">
+        <div class="eyebrow"><span class="led"></span> eth0: Link is Up · 1000BASE-T1 · Full duplex</div>
+        <h1>Automotive Ethernet,<br><span class="grad">{{TAGLINE}}</span></h1>
+        <p class="lead">{{SUBTITLE}}</p>
+        <div class="cta">
+          <a class="btn primary" href="{{FIRST_SLUG}}/">Start with {{FIRST_TITLE}} <i>→</i></a>
+          <a class="btn ghost" href="#courses">Browse all {{COUNT}} courses</a>
+        </div>
+        <dl class="stats">
+          <div><dt>{{LESSONS}}</dt><dd>lessons</dd></div>
+          <div><dt>{{ANIMS}}</dt><dd>step-through animations</dd></div>
+          <div><dt>{{LABS}}</dt><dd>interactive labs</dd></div>
+          <div><dt>{{QUIZ}}</dt><dd>quiz questions</dd></div>
+        </dl>
+      </div>
+
+      <div class="hero-visual">
+        <div class="term">
+          <div class="term-bar"><span></span><span></span><span></span><b>zone-controller — dmesg</b></div>
+          <pre id="term" aria-label="Boot log of an automotive zone controller"></pre>
+        </div>
+        <div class="wire" aria-hidden="true">
+          <div class="port l">PHY</div>
+          <div class="cable">
+            <div class="frames">
+              <div class="fr"><i class="pre"></i><i class="sfd"></i><i class="hdr"></i><i class="sec"></i><i class="pay"></i><i class="icv"></i><i class="fcs"></i></div>
+              <div class="fr f2"><i class="pre"></i><i class="sfd"></i><i class="hdr"></i><i class="ptp"></i><i class="fcs"></i></div>
+              <div class="fr f3"><i class="pre"></i><i class="sfd"></i><i class="hdr"></i><i class="pay"></i><i class="pay"></i><i class="fcs"></i></div>
+            </div>
+          </div>
+          <div class="port r">PHY</div>
+        </div>
+        <div class="legend" aria-hidden="true"><span><i class="pre"></i>preamble</span><span><i class="sfd"></i>SFD</span><span><i class="hdr"></i>header</span><span><i class="ptp"></i>gPTP</span><span><i class="sec"></i>SecTAG</span><span><i class="pay"></i>payload</span><span><i class="icv"></i>ICV</span></div>
+      </div>
+    </section>
+
+    <section id="courses" class="section">
+      <div class="sec-head">
+        <h2>Courses</h2>
+        <p>Each course goes from the bits on the wire to running it on Linux. Your progress is saved in this browser.</p>
+      </div>
+      <div class="grid">
+{{CARDS}}
+      </div>
+    </section>
+
+    <section id="inside" class="section">
+      <div class="sec-head"><h2>What's inside</h2><p>Built for engineers who want to see the mechanism, not just read about it.</p></div>
+      <div class="features">
+        <div class="feat"><span class="f-ic">▶</span><h3>Step-through animations</h3><p>Frames, timestamps and key exchanges play out one step at a time, with a caption explaining each step.</p></div>
+        <div class="feat"><span class="f-ic">∑</span><h3>Labs that do the math</h3><p>Real GCM-AES, key derivation, correctionField and Pdelay arithmetic, computed live in your browser.</p></div>
+        <div class="feat"><span class="f-ic">⌗</span><h3>Byte-level dissectors</h3><p>Click through every field of a MACsec SecTAG or a gPTP header, and build your own.</p></div>
+        <div class="feat"><span class="f-ic">$</span><h3>Linux namespace labs</h3><p>Scripts that build MACsec links and gPTP chains on one PC with iproute2, wpa_supplicant and linuxptp.</p></div>
+      </div>
+    </section>
+
+    <footer>
+      <span><span class="led"></span> {{TITLE}} · Automotive Ethernet, frame by frame</span>
+      <span>{{AUTHOR}}</span>
+    </footer>
+  </main>
+
+  <script>
+  (function () {
+    var root = document.documentElement;
+    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ---- theme ----
+    var btns = document.querySelectorAll('[data-t]');
+    function cur() { try { return localStorage.getItem('linkup-theme'); } catch (e) { return null; } }
+    function paint() { var t = cur(); btns.forEach(function (b) { b.setAttribute('aria-pressed', String((b.dataset.t === 'auto' ? null : b.dataset.t) === t)); }); }
+    btns.forEach(function (b) { b.addEventListener('click', function () {
+      var t = b.dataset.t === 'auto' ? null : b.dataset.t;
+      try { t ? localStorage.setItem('linkup-theme', t) : localStorage.removeItem('linkup-theme'); } catch (e) {}
+      t ? root.setAttribute('data-theme', t) : root.removeAttribute('data-theme'); paint();
+    }); });
+    paint();
+
+    // ---- progress per course (each course stores its own state) ----
+    document.querySelectorAll('.course').forEach(function (c) {
+      var n = +c.dataset.lessons || 0, done = 0;
+      try { var s = JSON.parse(localStorage.getItem(c.dataset.key)) || {}; done = Object.keys(s.done || {}).length; } catch (e) {}
+      if (!n || !done) return;
+      var pct = Math.min(100, Math.round(100 * done / n));
+      c.querySelector('.bar span').style.width = pct + '%';
+      var p = c.querySelector('.pct'), go = c.querySelector('.go');
+      if (pct >= 100) { p.textContent = '✓ Completed'; p.classList.add('done'); go.firstChild.nodeValue = 'Review '; }
+      else { p.textContent = done + ' / ' + n + ' lessons'; go.firstChild.nodeValue = 'Continue '; }
+    });
+
+    // ---- boot log typewriter ----
+    var lines = [
+      ['[    0.000000]', ' zone-ctrl: booting, ', 'k', 'AUTOSAR + Linux HPC'],
+      ['[    0.812004]', ' eth0: PHY 1000BASE-T1 ', 'k', 'master', ', link training…'],
+      ['[    1.104381]', ' eth0: ', 'ok', 'Link is Up', ' - 1Gbps/Full'],
+      ['[    1.106020]', ' macsec0: MKA peer ', 'ok', 'live', ', SAK installed (AN 0)'],
+      ['[    1.139455]', ' ptp4l: port 1: UNCALIBRATED → ', 'ok', 'SLAVE'],
+      ['[    1.402871]', ' ptp4l: master offset ', 'k', '-3 ns', ' s3 path delay 51'],
+      ['[    1.403000]', ' ', 'ok', 'time base synchronized ✓', '']
+    ];
+    var term = document.getElementById('term');
+    function esc(s) { return s.replace(/[&<>]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]; }); }
+    function render(l) { return '<span class="ts">' + l[0] + '</span>' + esc(l[1]) + '<span class="' + l[2] + '">' + esc(l[3]) + '</span>' + esc(l[4] || ''); }
+    if (reduce) { term.innerHTML = lines.map(render).join('\n'); return; }
+    var li = 0, ci = 0, html = '';
+    function plain(l) { return l[0] + l[1] + l[3] + (l[4] || ''); }
+    function tick() {
+      if (li >= lines.length) { setTimeout(function () { li = 0; ci = 0; html = ''; tick(); }, 4200); return; }
+      var full = plain(lines[li]);
+      ci = Math.min(full.length, ci + (ci < lines[li][0].length ? full.length : 2));
+      if (ci >= full.length) {
+        html += render(lines[li]) + '\n'; li++; ci = 0;
+        term.innerHTML = html + '<span class="cur">▌</span>';
+        setTimeout(tick, li === 2 ? 650 : 260);
+      } else {
+        term.innerHTML = html + esc(full.slice(0, ci)) + '<span class="cur">▌</span>';
+        setTimeout(tick, 16);
+      }
+    }
+    tick();
+
+    // ---- MACsec art: scrambling ciphertext ----
+    var hx = document.querySelectorAll('.art-crypto .hx'), H = '0123456789abcdef';
+    setInterval(function () {
+      for (var i = 0; i < 6; i++) { var e = hx[(Math.random() * hx.length) | 0]; if (e) e.textContent = H[(Math.random() * 16) | 0] + H[(Math.random() * 16) | 0]; }
+    }, 90);
+  })();
+  </script>
+</body>
+</html>

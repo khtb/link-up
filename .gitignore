@@ -1,0 +1,7 @@
+# docs/ is the published site: keep it committed (GitHub Pages serves main:/docs).
+.prev/
+__pycache__/
+*.pcap
+*.pcapng
+*.log
+.DS_Store

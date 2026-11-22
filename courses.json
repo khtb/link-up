@@ -1,0 +1,45 @@
+{
+  "site": {
+    "title": "Link Up",
+    "subtitle": "Interactive, animated courses on in-vehicle networking: from the bits on the wire, through the silicon, to running it on Linux.",
+    "author": "",
+    "tagline": "frame by frame."
+  },
+  "courses": [
+    {
+      "slug": "gptp",
+      "source": "courses/gptp",
+      "title": "gPTP (IEEE 802.1AS)",
+      "subtitle": "Timestamping, switch anatomy, bridge modes and the automotive profiles (802.1AS-2011 vs 2020).",
+      "icon": "⏱",
+      "storageKey": "gptp-course-v1",
+      "tags": [
+        "Time sync",
+        "TSN",
+        "Automotive",
+        "Linux"
+      ],
+      "accent": "#6366f1",
+      "accent2": "#22d3ee",
+      "art": "sync",
+      "kicker": "Time synchronization"
+    },
+    {
+      "slug": "macsec",
+      "source": "courses/macsec",
+      "title": "MACsec & MKA",
+      "subtitle": "IEEE 802.1AE frames, GCM-AES, the key hierarchy, MKA, the OPEN Alliance profile and 10BASE-T1S.",
+      "icon": "🔐",
+      "storageKey": "mka-course-v1",
+      "tags": [
+        "Security",
+        "Automotive",
+        "Linux"
+      ],
+      "accent": "#f43f5e",
+      "accent2": "#f59e0b",
+      "art": "crypto",
+      "kicker": "Link security"
+    }
+  ]
+}
